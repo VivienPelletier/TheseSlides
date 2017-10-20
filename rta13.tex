@@ -82,19 +82,48 @@
 \end{frame}
 
 \begin{frame}{L'algorithme de complétion}
-  \includegraphics[width=\linewidth]{media/schema.pdf}\\
-  \begin{itemize}[<+->]
-  \item Le \csprogramme initial est
-    \begin{itemize}
-      \item non copiant
-      \item normalisé
-    \end{itemize}
-    \vspace{\baselineskip}
-  \item Le système de réécriture est
-    \begin{itemize}
-      \item linéaire
-    \end{itemize}
-  \end{itemize}
+  \begin{center}
+    \resizebox{0.8\textwidth}{!}{
+      \begin{tikzpicture}
+
+        \tikzstyle{function} = [rectangle, rounded corners, shade, top color=white,
+            bottom color=blue!50!black!20, draw=blue!40!black!60, very
+            thick, align= center]
+        
+        \node[function]                                           (init)            {Début\\ Entrée : $R, Prog$};
+        \node[function, below=of init, text width= 3cm]           (removeCycle)     {Nettoyage};
+        \node[function, right=2cm of removeCycle, text width=3cm] (detect)          {Détection de paires critiques non convergentes};
+        \node[function, below right= of detect, text width= 2cm]  (norm)            {Ajout des clauses};
+        \node[function, above right= of detect]                   (end)             {Fin \\ Sortie : $Prog'$};
+        
+        \draw[->,thick, draw] (init)        -> (removeCycle);
+        \draw[->,thick, draw] (removeCycle) -> (detect);
+        \draw[->,thick, draw] (detect.east) -| (norm.north) node[above,pos=0.15] {Oui};
+        \draw[->,thick, draw] (detect)      |- (end.west) node[right,pos=0.15] {Non};
+        \draw[->,thick, draw] (norm.west)   -| (removeCycle);
+        
+      \end{tikzpicture}
+    }\\
+  \end{center}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Un \csprogramme initial
+        \begin{itemize}
+        \item non copiant
+        \item normalisé
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}[<+->]
+      \item Un système de réécriture
+        \begin{itemize}
+        \item linéaire
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Paires critiques}

@@ -25,20 +25,20 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{NC et SNC}
+\begin{frame}{Dérivations non copiantes (\nc) et fortement non copiantes (\snc)}
   \begin{Definition}
     Soit $A$ un atome ($A$ peut contenir des variables).\\
-    L'étape $A \leadsto_{[H\leftarrow B,\sigma]} G$ est NC (resp.\ SNC) si
+    L'étape $A \leadsto_{[H\leftarrow B,\sigma]} G$ est \nc (resp.\ \snc) si
     pour tout $x \in Var^{mult}(H)$, $\sigma(x)$ est irréducible (resp.\ fortement irréducible) par $R$.\\
-    Une dérivation est NC (resp.\ SNC) si toutes ses étapes le sont.
+    Une dérivation est \nc (resp.\ \snc) si toutes ses étapes le sont.
   \end{Definition}
   \begin{itemize}[<+->]
-  \item Une clause non copiante est SNC \\~
+  \item Une clause non copiante est \snc \\~
     
   \item $P(g(x,x)) \leftarrow Q(x)$
   \item $R = \{h(a) \rightarrow b\}$ \\~
 
-  \item $P(g(h(y),h(y))) \leadsto Q(h(y))$ : NC mais pas SNC
+  \item $P(g(h(y),h(y))) \leadsto Q(h(y))$ : \nc mais pas \snc
   \end{itemize}
 \end{frame}
 
@@ -51,7 +51,7 @@
     Soit $Prog' \supseteq Prog$ un \csprogramme \\
     \pause
     ~~~tel que toutes les paires critiques de $Prog$ sont convergentes\\
-    ~~~par dérivations SNC dans $Prog'$.\\
+    ~~~par dérivations \snc dans $Prog'$.\\
     \pause
     Si un terme $t \in \mathcal{L}_{Prog}(P)$ et $t \rightarrow^*_R t'$ avec une stratégie innermost, alors $t' \in \mathcal L_{Prog'}(P)$.
   \end{alertblock}

@@ -1,17 +1,17 @@
 \begin{frame}{Stratégies de réécriture}
   \begin{itemize}
-  \item Innermost
-  \item context sensitive TRS
-  \item prefix constrained TRS
+  \item \textit{Innermost}
+  \item \textit{context-sensitive} (cs\textsc{trs})
+  \item \textit{prefix-constrained} (\pctrs)
   \item stratégie programmable
   \end{itemize}
 \end{frame}
 
-\begin{frame}{prefix constrained TRS}
+\begin{frame}{\pctrs}
   \begin{itemize}
   \item $L : l \rightarrow r$
   \item $Dir(\Sigma) = \{\langle f, i \rangle \mid f \in \Sigma, 1 \leq i \leq arity(f)\}$
-  \item $L$ automate de mot construit sur $Dir(\Sigma)$
+  \item $L$ automate de mots construit sur $Dir(\Sigma)$
   \end{itemize}
   \begin{example}
     \begin{columns}
@@ -55,7 +55,7 @@
   \end{example}
 \end{frame}
 
-\begin{frame}{Transformation de TRS}
+\begin{frame}{Transformation de \pctrs}
   \begin{itemize}
   \item $R' = R'_1 \cup R'_2 \cup R'_3 \cup R'_4$
   \item $R'_1 = \{top(j(x)) \rightarrow top(q_I(x)) \mid q_I \in Q_I\}$
@@ -67,7 +67,7 @@
     Soit $t \in T(\Sigma)$. On a $t \rightarrow^*_{R_{pc}} t'$ si et seulement si $top(j(t)) \rightarrow^*_{R'} top(j(t'))$.
   \end{alertblock}
   \begin{alertblock}{Théorème : {\small[SCSS, 2017, N. Andrianarivelo, V. Pelletier et P. Réty]}}
-    Le pcTRS $R$ est terminant sur $\Sigma$ si et seulement si $R'$ est terminant sur $\Sigma'$.
+    Le \pctrs $R$ est terminant sur $\Sigma$ si et seulement si $R'$ est terminant sur $\Sigma'$.
   \end{alertblock}
 \end{frame}
 
@@ -89,6 +89,7 @@
         (q)   edge  [bend left]  node        {$(q,\langle f,1 \rangle, q')$} (q2)
         (q2)  edge  [bend left]  node        {$(q',\langle g,2 \rangle, q)$} (q);
       \end{tikzpicture}
+      \vspace{\baselineskip}
     \end{column}
   \end{columns}
   \begin{columns}

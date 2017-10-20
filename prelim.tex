@@ -11,8 +11,9 @@
     \end{column}
     \begin{column}{0.35\textwidth}
       \onslide<4>
-      \begin{tikz}
-        \node {$f$}
+      \begin{center}
+        \begin{tikz}
+          \node {$f$}
           child { node {$f$}
             child { node {$s$}
               child { node {$a$} } }
@@ -21,7 +22,8 @@
             child {node {$f$}
               child { node {$b$} }
               child { node {$b$} } } };
-      \end{tikz}
+        \end{tikz}
+      \end{center}
     \end{column}
   \end{columns}
 \end{frame}
@@ -36,42 +38,33 @@
     \item Langages synchronisés algébriques : $\{f(s^n(h^n(a)),s^n(h^n(b))) \mid n \geq 0\}$
     \end{itemize}
   \end{block}
+  \vspace{\baselineskip}
   \begin{overprint}
-    \onslide<1>
     \begin{tikzpicture}
-      \node[shape=rectangle, draw] (reg) at (0,0) {\scriptsize{Réguliers}};
-    \end{tikzpicture}
-    \onslide<2>
-    \begin{tikzpicture}
-      \node[shape=rectangle, draw] (reg) at (0,0) {\scriptsize{Réguliers}};
-      \node[shape=rectangle, draw] (synch) at (3,1) {\scriptsize{Synchronisés}};
+
+      \tikzstyle{language} = [shape=rectangle, draw];
       
-      \draw[->] (reg.east) -- (synch.west);
-    \end{tikzpicture}
-    \onslide<3>
-    \begin{tikzpicture}
-      \node[shape=rectangle, draw] (reg) at (0,0) {\scriptsize{Réguliers}};
-      \node[shape=rectangle, draw] (synch) at (3,1) {\scriptsize{Synchronisés}};
-      \node[shape=rectangle, draw] (algeio) at (3,0) {\scriptsize{Algébriques IO}};
-      \node[shape=rectangle, draw] (algeoi) at (3,-1) {\scriptsize{Algébriques OI}};
-      
-      \draw[->] (reg.east) -- (synch.west);
-      \draw[->] (reg.east) -- (algeio.west);
-      \draw[->] (reg.east) -- (algeoi.west);
-    \end{tikzpicture}
-    \onslide<4>
-    \begin{tikzpicture}
-      \node[shape=rectangle, draw] (reg) at (0,0) {\scriptsize{Réguliers}};
-      \node[shape=rectangle, draw] (synch) at (3,1) {\scriptsize{Synchronisés}};
-      \node[shape=rectangle, draw] (algeio) at (3,0) {\scriptsize{Algébriques IO}};
-      \node[shape=rectangle, draw] (algeoi) at (3,-1) {\scriptsize{Algébriques OI}};
-      \node[shape=rectangle, draw] (synchalge) at (7,1) {\scriptsize{Synchronisés Algébriques}};
-      
-      \draw[->] (reg.east) -- (synch.west);
-      \draw[->] (reg.east) -- (algeio.west);
-      \draw[->] (reg.east) -- (algeoi.west);
-      \draw[->] (synch.east) -- (synchalge.west);
-      \draw[->] (algeio.east) -- (synchalge.west);
+      \onslide<1->{
+        \node[language] (reg) at (0,0) {\scriptsize{Réguliers}};
+      }
+
+      \onslide<2->{
+        \node[language] (synch) at (3,1) {\scriptsize{Synchronisés}};
+        \draw[->] (reg.east) -- (synch.west);
+      }
+
+      \onslide<3->{
+        \node[language] (algeio) at (3,0) {\scriptsize{Algébriques IO}};
+        \node[language] (algeoi) at (3,-1) {\scriptsize{Algébriques OI}};
+        \draw[->] (reg.east) -- (algeio.west);
+        \draw[->] (reg.east) -- (algeoi.west);
+      }
+
+      \onslide<4->{
+        \node[language] (synchalge) at (7,1) {\scriptsize{Synchronisés Algébriques}};
+        \draw[->] (synch.east) -- (synchalge.west);
+        \draw[->] (algeio.east) -- (synchalge.west);
+      }
     \end{tikzpicture}
   \end{overprint}
 \end{frame}
@@ -181,13 +174,13 @@
   \end{itemize}
   \begin{center}
     $s(x) \rightarrow s(s(x))$\\
-    $t = f(y,s(a))$\\
+    $t = f(b,s(a))$\\
     \onslide<2->
     $\sigma(s(x)) = s(a)$ avec $\sigma = (x / a)$\\
     \onslide<3->
     $t \rightarrow t'$ \\
     \onslide<5>
-    $t' = f(y,s(s(a)))$ \\
+    $t' = f(b,s(s(a)))$ \\
     \onslide<1->
     \begin{overprint}
       \onslide<1-3>

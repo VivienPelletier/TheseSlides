@@ -4,7 +4,41 @@
   \item Réécritures de sous-termes non réductibles
   \end{itemize}
   \begin{center}
-    Figure à venir
+    \begin{tikzpicture}
+      
+      \tikzstyle{focusedNode} = [shape = circle, thick, focusColor, fill=focusColor, draw];
+      \tikzstyle{normalEdge} = [thick];
+      
+      \draw[thick, focusColorBis, fill=focusColorBis] (1,-3) -- ( 0,-5) -- (2,-5) -- cycle;
+      
+      \node (root) at (0,0) {};
+      
+      \node (a)    at (-2,-1) {};
+      \node (b)    at ( 0,-1) {};
+      \node (c)    at ( 2,-1) {};
+
+      \node (aa)  at (-3,-2) {};
+      \node (ab)  at (-2,-2) {};
+      \node (ba)  at (-1,-2) {};
+      \node (bb)  at (-0,-2) {};
+      \node (bc)  at ( 1,-2) {};
+      
+      \node (bba)  at (-1,-3) {};
+      \node[focusedNode] (bbb)  at ( 1,-3) {};
+
+      \draw[normalEdge] (root) -- (a);
+      \draw[normalEdge] (root) -- (b);
+      \draw[normalEdge] (root) -- (c);
+
+      \draw[normalEdge] (a) -- (aa);
+      \draw[normalEdge] (a) -- (ab);
+      \draw[normalEdge] (b) -- (ba);
+      \draw[normalEdge] (b) -- (bb);
+      \draw[normalEdge] (b) -- (bc);
+      
+      \draw[normalEdge] (bb) -- (bba);
+      \draw[normalEdge] (bb) -- (bbb);
+    \end{tikzpicture}
   \end{center}
 \end{frame}
 

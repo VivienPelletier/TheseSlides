@@ -1,10 +1,143 @@
 \begin{frame}{Stratégies de réécriture}
-  \begin{itemize}
-  \item \textit{Innermost}
-  \item \textit{context-sensitive} (cs\textsc{trs})
-  \item \textit{prefix-constrained} (\pctrs)
-  \item stratégie programmable
-  \end{itemize}
+  \vspace{1cm}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \begin{block}{}
+        \begin{itemize}[<+->]
+        \item \textit{Innermost}
+        \item \textit{context-sensitive} (cs\textsc{trs})
+        \item stratégie programmable
+        \item \color{focusColorBis}{\textit{prefix-constrained} (\pctrs)}
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{overprint}
+        \onslide<1>
+        \begin{center}
+          \begin{tikzpicture}
+            
+            \tikzstyle{focusedNode} = [shape = circle, thick, focusColor, fill=focusColor, draw];
+            \tikzstyle{normalEdge} = [thick];
+            
+            \draw[thick, focusColorBis, fill=focusColorBis] (1,-3) -- ( 0,-5) -- (2,-5) -- cycle;
+            
+            \node (root) at (0,0) {};
+            
+            \node (a)    at (-2,-1) {};
+            \node (b)    at ( 0,-1) {};
+            \node (c)    at ( 2,-1) {};
+
+            \node (aa)  at (-3,-2) {};
+            \node (ab)  at (-2,-2) {};
+            \node (ba)  at (-1,-2) {};
+            \node (bb)  at (-0,-2) {};
+            \node (bc)  at ( 1,-2) {};
+            
+            \node (bba)  at (-1,-3) {};
+            \node[focusedNode] (bbb)  at ( 1,-3) {};
+
+            \draw[normalEdge] (root) -- (a);
+            \draw[normalEdge] (root) -- (b);
+            \draw[normalEdge] (root) -- (c);
+
+            \draw[normalEdge] (a) -- (aa);
+            \draw[normalEdge] (a) -- (ab);
+            \draw[normalEdge] (b) -- (ba);
+            \draw[normalEdge] (b) -- (bb);
+            \draw[normalEdge] (b) -- (bc);
+            
+            \draw[normalEdge] (bb) -- (bba);
+            \draw[normalEdge] (bb) -- (bbb);
+          \end{tikzpicture}
+        \end{center}
+        \onslide<2>
+        \begin{center}
+          \begin{tikzpicture}
+            
+            \tikzstyle{normalEdge} = [thick];
+            \tikzstyle{focusedEdge} = [thick, focusColor];
+            
+            \node (f) at (0,0) {f};
+            
+            \node (fa)    at (-2,-1) {};
+            \node (fb)    at ( 0,-1) {};
+            \node (fc)    at ( 2,-1) {};
+
+            \draw[focusedEdge] (f) -- (fa);
+            \draw[normalEdge] (f) -- (fb);
+            \draw[focusedEdge] (f) -- (fc);
+          \end{tikzpicture}
+          \begin{tikzpicture}
+            
+            \tikzstyle{normalEdge} = [thick];
+            \tikzstyle{focusedEdge} = [thick, focusColor];
+
+            \node (g) at (0,0) {g};
+            
+            \node (ga)    at (-2,-1) {};
+            \node (gb)    at ( 0,-1) {};
+            \node (gc)    at ( 2,-1) {};
+
+            \draw[normalEdge] (g) -- (ga);
+            \draw[focusedEdge] (g) -- (gb);
+            \draw[focusedEdge] (g) -- (gc);
+          \end{tikzpicture}
+        \end{center}
+        \onslide<3>
+        \begin{center}
+          \begin{itemize}
+          \item Opérations élémentaires
+          \item Opérations de contrôle de combinaison
+          \item Opérations transversale
+          \end{itemize}
+        \end{center}
+        \onslide<4>
+        \begin{center}
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [shape = circle, thick, focusColor, fill=focusColor, draw];
+            \tikzstyle{focusedEdge} = [thick, focusColorBis];
+            \tikzstyle{normalEdge} = [thick];
+            
+            \node (root) at (0,0) {};
+            
+            \node (a)    at (-2,-1) {};
+            \node (b)    at ( 0,-1) {};
+            \node (c)    at ( 2,-1) {};
+
+            \node (aa)  at (-3,-2) {};
+            \node (ab)  at (-2,-2) {};
+            \node (ba)  at (-1,-2) {};
+            \node (bb)  at (-0,-2) {};
+            \node (bc)  at ( 1,-2) {};
+            
+            \node (bba)  at (-1,-3) {};
+            \node[focusedNode] (bbb)  at ( 1,-3) {};
+
+            \draw[normalEdge] (root) -- (a);
+            \draw[focusedEdge] (root) -- (b);
+            \draw[normalEdge] (root) -- (c);
+
+            \draw[normalEdge] (a) -- (aa);
+            \draw[normalEdge] (a) -- (ab);
+            \draw[normalEdge] (b) -- (ba);
+            \draw[focusedEdge] (b) -- (bb);
+            \draw[normalEdge] (b) -- (bc);
+            
+            \draw[normalEdge] (bb) -- (bba);
+            \draw[focusedEdge] (bb) -- (bbb);
+          \end{tikzpicture}
+        \end{center}
+      \end{overprint}
+    \end{column}
+  \end{columns}
+  \vspace{-2cm}
+  \begin{overprint}
+    \onslide<2> JFP, 2004, J. Giesl et A. Middeldorp, {\footnotesize Transformation techniques for context-sensitive rewrite systems}\\
+    \onslide<3> RTA, 2015, H. Cirstea, S. Lenglet et P.-E. Moreau, {\footnotesize A faithful encoding of programmable strategies into term rewriting systems}\\
+    \onslide<4> SCSS, 2017, N. Andrianarivelo, V. Pelletier et P. Réty, {\footnotesize Transforming prefix-constrained or controlled rewrite systems}\\
+  \end{overprint}
 \end{frame}
 
 \begin{frame}{\pctrs}
@@ -13,7 +146,7 @@
   \item $Dir(\Sigma) = \{\langle f, i \rangle \mid f \in \Sigma, 1 \leq i \leq arity(f)\}$
   \item $L$ automate de mots construit sur $Dir(\Sigma)$
   \end{itemize}
-  \begin{example}
+  \begin{exampleblock}{Exemple}
     \begin{columns}
       \begin{column}{0.5\textwidth}
         \begin{itemize}
@@ -52,7 +185,7 @@
         \end{overprint}
       \end{column}
     \end{columns}
-  \end{example}
+  \end{exampleblock}
 \end{frame}
 
 \begin{frame}{Transformation de \pctrs}

@@ -1,0 +1,186 @@
+\begin{frame}{Stratégies de réécriture}
+  \begin{itemize}
+  \item Innermost
+  \item context sensitive TRS
+  \item prefix constrained TRS
+  \item stratégie programmable
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{prefix constrained TRS}
+  \begin{itemize}
+  \item $L : l \rightarrow r$
+  \item $Dir(\Sigma) = \{\langle f, i \rangle \mid f \in \Sigma, 1 \leq i \leq arity(f)\}$
+  \item $L$ automate de mot construit sur $Dir(\Sigma)$
+  \end{itemize}
+  \begin{example}
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \begin{itemize}
+        \item $\Sigma = \{f^{\backslash 2}, g^{\backslash 2}, a^{\backslash 0}, b^{\backslash 0}\}$
+        \item $R = \{L : a \rightarrow b\}$
+        \item $L  = (\langle f,1 \rangle \cdot \langle g, 2 \rangle)^*$
+        \item $t = f(g(a,a),a)$
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{overprint}
+          \onslide<1>
+          \begin{tikzpicture}[level distance = 1cm]
+            \node {$f$}
+            child { node {$g$}
+              child {node {$a$}}
+              child {node {$a$}}}
+            child {node {$a$}};
+          \end{tikzpicture}
+          \onslide<2>
+          \begin{tikzpicture}[level distance = 1cm]
+            \node {$f$}
+            child {[focusColor] node[black] {$g$}
+              child {[black] node {$a$}}
+              child {[focusColor] node {$a$}}}
+            child {node {$a$}};
+          \end{tikzpicture}
+          \onslide<3>
+          \begin{tikzpicture}[level distance = 1cm]
+            \node {$f$}
+            child {[focusColor] node[black] {$g$}
+              child {[black] node {$a$}}
+              child {[focusColor] node {$b$}}}
+            child {node {$a$}};
+          \end{tikzpicture}
+        \end{overprint}
+      \end{column}
+    \end{columns}
+  \end{example}
+\end{frame}
+
+\begin{frame}{Transformation de TRS}
+  \begin{itemize}
+  \item $R' = R'_1 \cup R'_2 \cup R'_3 \cup R'_4$
+  \item $R'_1 = \{top(j(x)) \rightarrow top(q_I(x)) \mid q_I \in Q_I\}$
+  \item $R'_2= \{q(f(x_1,\ldots,x_n))\rightarrow \delta(x_1,\ldots,q'(x_i),\ldots,x_n) \mid \delta=(q, \langle f,i \rangle, q') \in \Delta\}$
+  \item $R'_3= \{q_f(l_k) \rightarrow j(r_k) \mid q_f \in Q_f^k,\, (L_k : l_k \rightarrow r_k) \in R\}$
+  \item $R'_4= \{\delta(x_1,\ldots,j(x_i),\ldots,x_n)\rightarrow j(f(x_1,\ldots,x_i,\ldots,x_n)) \mid \delta=(q, \langle f,i \rangle, q') \in \Delta\}$
+  \end{itemize}
+  \begin{alertblock}{Théorème : {\small[SCSS, 2017, N. Andrianarivelo, V. Pelletier et P. Réty]}}
+    Soit $t \in T(\Sigma)$. On a $t \rightarrow^*_{R_{pc}} t'$ si et seulement si $top(j(t)) \rightarrow^*_{R'} top(j(t'))$.
+  \end{alertblock}
+  \begin{alertblock}{Théorème : {\small[SCSS, 2017, N. Andrianarivelo, V. Pelletier et P. Réty]}}
+    Le pcTRS $R$ est terminant sur $\Sigma$ si et seulement si $R'$ est terminant sur $\Sigma'$.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Exemple}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+      \item $\Sigma = \{f^{\backslash 2}, g^{\backslash 2}, a^{\backslash 0}, b^{\backslash 0}\}$
+      \item $R=\{(\langle f,1 \rangle.\langle g,2 \rangle)^* : a\rightarrow b\}$
+      \item $Dir(\Sigma)=\{\langle f,1 \rangle,\langle f,2 \rangle, \langle g,1 \rangle, \langle g,2 \rangle\}$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{tikzpicture}[shorten >=1pt,node distance=3cm,on grid,auto]
+        \node[state,initial,accepting] (q) {$q$}; 
+        \node[state] (q2) [right=of q] {$q'$};
+      
+        \path[->] 
+        (q)   edge  [bend left]  node        {$(q,\langle f,1 \rangle, q')$} (q2)
+        (q2)  edge  [bend left]  node        {$(q',\langle g,2 \rangle, q)$} (q);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+      \item $R'_1= \{top(j(x)) \rightarrow top(q(x))\}$,
+      \item $R'_2= \{q(f(x,y))\rightarrow \delta_1(q'(x),y),$\\$q'(g(x,y))\rightarrow \delta_2(x,q(y))\}$,
+      \item $R'_3= \{q(a) \rightarrow j(b)\}$,
+      \item $R'_4=\{\delta_1(j(x),y)\rightarrow j(f(x,y)),$\\$\delta_2(x,j(y))\rightarrow j(g(x,y))\}$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{overprint}
+        \onslide<1>
+        \begin{tikzpicture}[level distance = 1cm]
+          \node {$f$}
+          child { node {$g$}
+            child {node {$a$}}
+            child {node {$a$}}}
+          child {node {$a$}};
+        \end{tikzpicture}
+        \onslide<2>
+        \begin{tikzpicture}[level distance = 1cm]
+          \node {$top$}
+          child { node {$j$}
+            child{ node{$f$}
+              child { node {$g$}
+                child {node {$a$}}
+                child {node {$a$}}}
+              child {node {$a$}}}};
+        \end{tikzpicture}
+        \onslide<3>
+        \begin{tikzpicture}[level distance = 1cm]
+          \node {$top$}
+          child { node {$q$}
+            child{ node{$f$}
+              child { node {$g$}
+                child {node {$a$}}
+                child {node {$a$}}}
+              child {node {$a$}}}};
+        \end{tikzpicture}
+        \onslide<4>
+        \begin{tikzpicture}[level distance = 1cm]
+          \node {$top$}
+          child { node {$\delta_1$}
+            child{ node{$q'$}
+              child { node {$g$}
+                child {node {$a$}}
+                child {node {$a$}}}
+              child {node {$a$}}}};
+        \end{tikzpicture}
+        \onslide<5>
+        \begin{tikzpicture}[level distance = 1cm]
+          \node {$top$}
+          child { node {$\delta_1$}
+              child { node {$\delta_2$}
+                child {node {$a$}}
+                child {node {$q$}
+                  child {node {$a$}}}}
+              child {node {$a$}}};
+        \end{tikzpicture}
+        \onslide<6>
+        \begin{tikzpicture}[level distance = 1cm]
+          \node {$top$}
+          child { node {$\delta_1$}
+              child { node {$\delta_2$}
+                child {node {$a$}}
+                child {node {$j$}
+                  child {node {$b$}}}}
+              child {node {$a$}}};
+        \end{tikzpicture}
+        \onslide<7>
+        \begin{tikzpicture}[level distance = 1cm]
+          \node {$top$}
+          child { node {$\delta_1$}
+            child{ node{$j$}
+              child { node {$g$}
+                child {node {$a$}}
+                child {node {$b$}}}
+              child {node {$a$}}}};
+        \end{tikzpicture}
+        \onslide<8>
+        \begin{tikzpicture}[level distance = 1cm]
+          \node {$top$}
+          child { node {$j$}
+            child{ node{$f$}
+              child { node {$g$}
+                child {node {$a$}}
+                child {node {$b$}}}
+              child {node {$a$}}}};
+        \end{tikzpicture}
+      \end{overprint}
+    \end{column}
+  \end{columns}
+\end{frame}

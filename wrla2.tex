@@ -1,0 +1,73 @@
+\begin{frame}{Origine des clauses copiantes}
+  \begin{itemize}[<+->]
+  \item Les étapes de réécritures non couvertes proviennent des clauses copiantes
+    \begin{itemize}
+    \item Les clauses copiantes proviennent
+      \begin{itemize}
+      \item de clauses copiantes présentent dans le programme initial
+      \item du système de réécriture non linéaire droit
+      \end{itemize}
+    \end{itemize}
+    \vspace{\baselineskip}
+  \item Solution
+    \begin{itemize}
+    \item une procédure pour transformer les clauses copiantes en non copiantes
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple}
+  \begin{itemize}[<+->]
+  \item $Prog$ =
+    \begin{itemize}
+    \item $P(f(x,x)) \stackrel{1}{\leftarrow} Q(x)$
+    \item \color<7>{focusColor}$Q(s(x)) \stackrel{2}{\leftarrow} Q(x)$
+    \item \color<8>{focusColor}$Q(a) \stackrel{3}{\leftarrow} $
+    \end{itemize}
+    \vspace{\baselineskip}
+
+  \item $uncopying(P(f(x,x)) \leftarrow Q(x))$
+  \item $P(f(x,y)) \leftarrow Q^2(x, y)$
+  \item $Q^2(s(x),s(y)) \leftarrow Q^2(x,y)$
+  \item $Q^2(a,a) \leftarrow $ \\~
+
+  \item Reconnaît le même langage
+  \item Plus de clauses copiantes
+  \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Terminaison de l'élimination de clauses copiantes}
+  \begin{itemize}[<+->]
+  \item Ne termine pas dans le cas général
+  \item $Prog$ =
+    \begin{itemize}
+    \item \color<7>{focusColor}$P(c(x,x)) \stackrel{1}{\leftarrow} P(x)$
+    \item \color<8>{focusColor}$P(a) \stackrel{2}{\leftarrow} $
+    \end{itemize}
+    \vspace{\baselineskip}
+
+  \item $uncopying(P(c(x,x)) \leftarrow P(x))$
+  \item $P(c(x,y)) \leftarrow P^2(x, y)$
+  \item \color<11>{focusColor}$P^2(c(x,x),c(y,y)) \leftarrow P^2(x,y)$
+  \item \color<12>{focusColor}$P^2(a,a) \leftarrow $ \\~
+
+  \item $uncopying(P^2(c(x,x), c(y,y)) \leftarrow P^2(x,y))$
+  \item $P^2(c(x,x'), c(y,y')) \leftarrow P^4(x, x', y, y')$
+  \item $P^4(c(x,x),c(x',x'),c(y,y),c(y',y')) \leftarrow P^4(x,x',y,y')$
+  \item $P^4(a,a,a,a) \leftarrow $ \\~
+
+  \item et ainsi de suite
+  \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Forcer la terminaison}
+  \begin{itemize}[<+->]
+  \item $UncopyingLimit = 2$ \\~
+
+  \item $P^2(c(x,x'), c(y,y')) \leftarrow P^2(x, x'), P(y), P(y')$ \\~
+
+  \item $\{ \vec{t}. \vec{t}. \vec{t'}. \vec{t''} \mid \vec{t},\vec{t'},\vec{t''} \in L(P) \} \subset L(P^4)$
+  \end{itemize}
+\end{frame}

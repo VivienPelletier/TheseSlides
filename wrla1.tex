@@ -1,0 +1,58 @@
+\begin{frame}{Stratégie innermost}
+  \begin{itemize}
+  \item Restriction des réécritures
+  \item Réécritures de sous-termes non réductibles
+  \end{itemize}
+  \begin{center}
+    Figure à venir
+  \end{center}
+\end{frame}
+
+\begin{frame}{Irréducibilité forte}
+  \begin{Definition}[Irréducibilité forte]
+    Soit $R$ un TRS.
+    Un terme $t$ est {\em fortement irréducible} (par $R$) si
+    pour tout $p \in \textit{PosNonVar}(t)$, pour tout $l \rightarrow r \in R$,
+    $t|_p$ et $l$ ne sont pas unifiables.\\
+    Une substitution $\theta$ est {\em fortement irréducible} si
+    pour tout $x \in \mathcal{X}$, $\theta(x)$ est fortement irréducible.
+  \end{Definition}
+  \begin{itemize}
+  \item \onslide<2-> $f(b) \rightarrow b$
+  \item \onslide <3-> $t = f(x)$ : \onslide<4-> irréducible
+  \item \onslide <5-> $\theta = (x/a)$ : \onslide <6-> est fortement irréducible
+  \item \onslide <7-> $\theta(t) = f(a)$ : \onslide <8-> fortement irréducible
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{NC et SNC}
+  \begin{Definition}
+    Soit $A$ un atome ($A$ peut contenir des variables).\\
+    L'étape $A \leadsto_{[H\leftarrow B,\sigma]} G$ est NC (resp.\ SNC) si
+    pour tout $x \in Var^{mult}(H)$, $\sigma(x)$ est irréducible (resp.\ fortement irréducible) par $R$.\\
+    Une dérivation est NC (resp.\ SNC) si toutes ses étapes le sont.
+  \end{Definition}
+  \begin{itemize}[<+->]
+  \item Une clause non copiante est SNC \\~
+    
+  \item $P(g(x,x)) \leftarrow Q(x)$
+  \item $R = \{h(a) \rightarrow b\}$ \\~
+
+  \item $P(g(h(y),h(y))) \leadsto Q(h(y))$ : NC mais pas SNC
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Clôture par réécriture innermost}
+  \begin{alertblock}{Théorème [WRLA, 2016, Y. Boichut, V. Pelletier et P. Réty]}
+    Soit $R$ un système de réécriture linéaire gauche.\\
+    \pause
+    Soit $Prog$ un \csprogramme normalisé et non copiant.\\
+    \pause
+    Soit $Prog' \supseteq Prog$ un \csprogramme \\
+    \pause
+    ~~~tel que toutes les paires critiques de $Prog$ sont convergentes\\
+    ~~~par dérivations SNC dans $Prog'$.\\
+    \pause
+    Si un terme $t \in \mathcal{L}_{Prog}(P)$ et $t \rightarrow^*_R t'$ avec une stratégie innermost, alors $t' \in \mathcal L_{Prog'}(P)$.
+  \end{alertblock}
+\end{frame}

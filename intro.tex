@@ -1,0 +1,264 @@
+\begin{frame}{Systèmes complexes}
+  \begin{block}{Système complexe}
+    Un système complexe est un ensemble constitué d'un grand nombre d'entités en interaction qui empêchent l'observateur de prévoir sa rétroaction, son comportement ou évolution par le calcul.
+  \end{block}
+  \pause
+  \begin{exampleblock}{Systèmes complexes}
+    \begin{itemize}
+    \item programmes informatiques,
+    \item protocoles de sécurité,
+    \item circuits logiques \ldots
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Le génie logiciel}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{center}
+        \includegraphics[height=4cm]{media/apollo.png}
+      \end{center}
+      \onslide<2>
+      \begin{block}{Génie logiciel}
+        L'ensemble des activités de conception et de mise en œuvre des produits et des procédures tendant à rationaliser la production du logiciel et son suivi.
+      \end{block}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \onslide<1->
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{media/MHamilton.jpg}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Vérification}
+  Conformité et fiabilité d'un système complexe ?
+  \begin{block}{}
+    \begin{itemize}[<+->]
+    \item Les tests
+      \begin{itemize}
+      \item si l'ensemble d'entrées est trop grand ou infini ?
+      \end{itemize}
+    \item Les méthodes formelles
+      \begin{itemize}
+      \item analyse statique par interprétation abstraite
+      \item vérification déductive
+      \item vérification de modèles
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Analyse statique par interprétation abstraite}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{media/fichier.png}
+        \includegraphics[width=\textwidth]{media/entonnoir.png}
+        \includegraphics[width=0.25\textwidth]{media/fichier.png}
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{}
+        \begin{itemize}
+        \item Constat
+          \begin{itemize}
+          \item trop d'informations
+          \end{itemize}
+        \item Solution
+          \begin{itemize}
+          \item utilisation d'abstractions
+          \end{itemize}
+        \item Difficulté
+          \begin{itemize}
+          \item garder suffisamment d'informations
+          \item mais pas trop
+          \end{itemize}
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Vérification déductive}
+  \begin{overprint}
+    \begin{tikzpicture}
+      
+      \tikzstyle{domino} = [minimum width=1.7cm, minimum height=1cm, draw]
+      \tikzstyle{dependancy} = [->, thick]
+      
+       \onslide<1->{
+         \node (shredder) at (0,1.5) {\includegraphics[width=0.3\textwidth]{media/shredder.png}};
+       }
+
+      \onslide<2->{
+        \node[circle, minimum size=0.5cm, very thick, fill=white, draw] (small) at (0,0.4) {};
+        \node[circle, minimum size=7cm, very thick, draw] (big) at (6,-0.5) {};
+      
+        \node[domino] (dom3pre) at (6, -2) {\tiny{préconditions}};
+        \node[domino, below=0 of dom3pre] (dom3post) {\tiny{postconditions}};
+        
+        \draw[very thick] (small) -- (big);
+      }
+      
+      \onslide<3->{
+        \node[domino] (dom1pre) at (4.75, 1.25) {\tiny{préconditions}};
+        \node[domino, below=0 of dom1pre] (dom1post) {\tiny{postconditions}};
+      
+        \node[domino] (dom2pre) at (7.25, 1.25) {\tiny{préconditions}};
+        \node[domino, below=0 of dom2pre] (dom2post) {\tiny{postconditions}};
+      
+        \draw[dependancy] (dom1post.south) |- (5.5,-0.75) -- (dom3pre.134);
+        \draw[dependancy] (dom2post.-134) |- (6.5,-0.75) -- (dom3pre.46);
+        \draw[dependancy] (dom2post.-46) |- (8.25,-0.75) -- (8.25,2) -| (dom2pre.46);
+        
+        \draw[dependancy] (big.66) -| (dom2pre.134);
+        \draw[dependancy] (big.north) -- (6,2.5 ) -| (dom1pre.north);
+      }
+    \end{tikzpicture}
+  \end{overprint}
+\end{frame}
+
+\begin{frame}{Vérification de modèles}
+  \begin{block}{}
+    \begin{itemize}
+    \item Analyse exhaustive
+    \item Représentation astucieuse
+    \end{itemize}
+  \end{block}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\textwidth]{media/rosace.jpg}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\textwidth]{media/compass_ruler.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Analyse d'accessibilité}
+  Configurations
+  \begin{block}{}
+    \begin{itemize}[<+->]
+    \item Ensemble des configurations accessibles
+    \item Ensemble des configurations indésirables
+    \end{itemize}
+  \end{block}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \onslide<3->
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[fill=accessibleColor, fill opacity=0.5] (0,0) ellipse (1 and 0.75);
+          \node (r*i) at (0,0) {\scriptsize{Accessibles}};
+          \draw[fill=badColor, fill opacity=0.5] (1.75,0) ellipse (1 and 0.75);
+          \node (bad) at (1.75,0) {\scriptsize{Indésirables}};
+        \end{tikzpicture}\\
+        Il existe une configuration\\ indésirable accessible
+      \end{center}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \onslide<4>
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[fill=accessibleColor, fill opacity=0.5] (0,0) ellipse (1 and 0.75);
+          \node (r*i) at (0,0) {\scriptsize{Accessibles}};
+          \draw[fill=badColor, fill opacity=0.5] (2.5,0) ellipse (1 and 0.75);
+          \node (bad) at (2.5,0) {\scriptsize{Indésirables}};
+        \end{tikzpicture}\\
+        Aucune configuration indésirable\\ n'est accessible
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Calcul de l'ensemble des configurations accessibles}
+  \begin{itemize}[<+->]
+  \item Configurations initiales : $I$
+  \item Dynamique : $R$
+  \end{itemize}
+  \begin{center}
+    \begin{tikzpicture}
+      \onslide<7->
+      \draw[fill=fig-color-ri] (4,0) ellipse (5 and 2.2);
+      \node (r*i) at (7.75,0) {$R^*(I)$};
+
+      \onslide<6->
+      \draw[fill=fig-color4] (3,0) ellipse (4 and 1.9);
+      \node (...) at (5.75,0) {$\cdots$};
+      
+      \onslide<5->
+      \draw[fill=fig-color3] (2,0) ellipse (3 and 1.6);
+      \node (r2i) at (3.75,0) {$R^2(I)$};
+
+      \onslide<4->      
+      \draw[fill=fig-color2] (1,0) ellipse (2 and 1.3);
+      \node (ri) at (1.75,0) {$R(I)$};
+
+      \onslide<3->
+      \draw[fill=fig-color-i] (0,0) ellipse (1 and 1);
+      \node (i) at (0,0) {$I$};
+      
+      \onslide<1->
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Sur-approximations}
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[fill=overApproxColor, fill opacity=0.5] (0,0) ellipse (2 and 1);
+      \node (r*i) at (-1.25,0) {$\mathcal H$};
+      
+      \draw[fill=accessibleColor, fill opacity=0.5] (0,0) ellipse (1 and 0.75);
+      \node (r*i) at (0,0) {\scriptsize{Accessibles}};
+      \draw[fill=badColor, fill opacity=0.5] (3.5,0) ellipse (1 and 0.75);
+      \node (bad) at (3.5,0) {\scriptsize{Indésirables}};
+    \end{tikzpicture}\\
+    Aucune configuration indésirable accessible\\
+  \end{center}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \pause
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[fill=overApproxColor, fill opacity=0.5] (0,0) ellipse (2 and 1);
+          \node (r*i) at (-1.25,0) {$\mathcal H$};
+          
+          \draw[fill=accessibleColor, fill opacity=0.5] (0,0) ellipse (1 and 0.75);
+          \node (r*i) at (0,0) {\scriptsize{Accessibles}};
+          \draw[fill=badColor, fill opacity=0.5] (1.75,0) ellipse (1 and 0.75);
+          \node (bad) at (1.75,0) {\scriptsize{Indésirables}};
+        \end{tikzpicture}\\
+        Il existe une configuration\\ indésirable accessible
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \pause
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[fill=overApproxColor, fill opacity=0.5] (0,0) ellipse (2 and 1);
+          \node (r*i) at (-1.25,0) {$\mathcal H$};
+          
+          \draw[fill=accessibleColor, fill opacity=0.5] (0,0) ellipse (1 and 0.75);
+          \node (r*i) at (0,0) {\scriptsize{Accessibles}};
+          \draw[fill=badColor, fill opacity=0.5] (2.5,0) ellipse (1 and 0.75);
+          \node (bad) at (2.5,0) {\scriptsize{Indésirables}};
+        \end{tikzpicture}\\
+        Aucune configuration \\indésirable accessible,\\ c'est un faux-positif
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Notre modélisation}
+  \begin{block}{}
+    \begin{itemize}[<+->]
+    \item Configuration : un terme
+    \item Configurations initiales : un langage de termes
+    \item Dynamique du système : un système de réécriture
+    \item Configurations indésirables : un langage de termes
+    \end{itemize}
+  \end{block}
+\end{frame}

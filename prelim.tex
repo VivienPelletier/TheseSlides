@@ -72,93 +72,201 @@
 \begin{frame}{Variables}
   \begin{columns}
     \begin{column}{0.6\textwidth}
-      \begin{itemize}
-      \item<1-> Ensemble de variables : $\mathcal X = \{x, y\}$
-      \item<2-> La substitution : $\sigma = (x / s(b))$
-      \item<4-> Le filtrage : $\sigma(t) = t'$
-      \item<6-> L'unification : $\alpha(t) = \alpha(t')$
-      \end{itemize}
+      \begin{block}{}
+        \begin{itemize}
+        \item<1-> Ensemble de variables : $\mathcal X = \{x, y\}$
+        \item<2-> La substitution : \color<2-3>{focusColor}{$\sigma = (x / s(b))$}
+        \item<4-> Le filtrage : \color<5>{focusColor}{$\sigma(t) = t'$}
+        \item<6-> L'unification : \color<7>{focusColor}{$\alpha(t) = \alpha(t')$}
+        \end{itemize}
+      \end{block}
     \end{column}
     \begin{column}{0.4\textwidth}
       \begin{overprint}
-        \onslide<2-3>
+        \onslide<2>
         \begin{center}
-          $t = f(x,s(a))$\\
-          \begin{tikzpicture}[level distance = 1cm]
-            \node {$f$}
-            child { node {$x$}}
-            child { node {$s$}
-              child {node {$a$}}};
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            
+            \node (f) at (0,0) {$f$};
+            \node[focusedNode] (x) at (-1,-1) {$x$};
+            \node (s) at (1,-1) {$s$};
+            \node (a) at (1,-2) {$a$};
+
+            \draw[thick] (f) -- (x);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (a);
           \end{tikzpicture}
         \end{center}
-        \onslide<4-5>
-        \begin{center}
-          $t = f(x,s(a))$\\
-          \begin{tikzpicture}[level distance = 1cm]
-            \node {$f$}
-            child { node {$x$}}
-            child { node {$s$}
-              child {node {$a$}}};
-          \end{tikzpicture}
-        \end{center}
-        \onslide<6->
-        \begin{center}
-          \begin{columns}
-            \begin{column}{0.5\textwidth}
-              $t = f(x,s(a))$\\
-              \begin{tikzpicture}[level distance = 1cm]
-                \node {$f$}
-                child { node {$x$}}
-                child { node {$s$}
-                  child {node {$a$}}};
-              \end{tikzpicture}
-            \end{column}
-            \begin{column}{0.5\textwidth}
-              $t' = f(s(b),y)$\\
-              \begin{tikzpicture}[level distance = 1cm]
-                \node {$f$}
-                child { node {$s$}
-                  child {node {$b$}}}
-                child { node {$y$}};
-              \end{tikzpicture}
-            \end{column}
-          \end{columns}
-        \end{center}
-      \end{overprint}
-      
-      \begin{overprint}
         \onslide<3>
         \begin{center}
-          $\sigma(t) = f(s(b),s(a))$\\
-          \begin{tikzpicture}[level distance = 1cm]
-            \node {$f$}
-            child { node {$s$}
-              child {node {$b$}}}
-            child { node {$s$}
-              child {node {$a$}}};
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            \tikzstyle{focusedEdge} = [focusColor,thick];
+            
+            \node (f) at (0,0) {$f$};
+            \node (s) at (1,-1) {$s$};
+            \node (a) at (1,-2) {$a$};
+            \node[focusedNode] (sbis) at (-1,-1) {$s$};
+            \node[focusedNode] (b) at (-1,-2) {$b$};
+            
+
+            \draw[thick] (f) -- (x);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (a);
+            \draw[thick] (f) -- (sbis);
+            \draw[focusedEdge] (sbis) -- (b);
+          \end{tikzpicture}
+        \end{center}
+        \onslide<4>
+        \begin{center}
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            
+            \node (f) at (0,0) {$f$};
+            \node (x) at (-1,-1) {$x$};
+            \node (s) at (1,-1) {$s$};
+            \node (a) at (1,-2) {$a$};
+
+            \draw[thick] (f) -- (x);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (a);
+          \end{tikzpicture}
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            \tikzstyle{focusedEdge} = [focusColor,thick];
+            
+            \node (f) at (0,0) {$f$};
+            \node (s) at (1,-1) {$s$};
+            \node (a) at (1,-2) {$a$};
+            \node (sbis) at (-1,-1) {$s$};
+            \node (b) at (-1,-2) {$b$};
+            
+
+            \draw[thick] (f) -- (x);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (a);
+            \draw[thick] (f) -- (sbis);
+            \draw[thick] (sbis) -- (b);
           \end{tikzpicture}
         \end{center}
         \onslide<5>
         \begin{center}
-          $t' = f(s(b),s(a))$\\
-          \begin{tikzpicture}[level distance = 1cm]
-            \node {$f$}
-            child { node {$s$}
-              child {node {$b$}}}
-            child { node {$s$}
-              child {node {$a$}}};
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            
+            \node (f) at (0,0) {$f$};
+            \node[focusedNode] (x) at (-1,-1) {$x$};
+            \node (s) at (1,-1) {$s$};
+            \node (a) at (1,-2) {$a$};
+
+            \draw[thick] (f) -- (x);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (a);
+          \end{tikzpicture}
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            \tikzstyle{focusedEdge} = [focusColor,thick];
+            
+            \node (f) at (0,0) {$f$};
+            \node (s) at (1,-1) {$s$};
+            \node (a) at (1,-2) {$a$};
+            \node[focusedNode] (sbis) at (-1,-1) {$s$};
+            \node[focusedNode] (b) at (-1,-2) {$b$};
+            
+
+            \draw[thick] (f) -- (x);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (a);
+            \draw[thick] (f) -- (sbis);
+            \draw[focusedEdge] (sbis) -- (b);
+          \end{tikzpicture}
+        \end{center}
+        \onslide<6>
+        \begin{center}
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            
+            \node (f) at (0,0) {$f$};
+            \node[focusedNode] (x) at (-1,-1) {$x$};
+            \node (s) at (1,-1) {$s$};
+            \node (a) at (1,-2) {$a$};
+
+            \draw[thick] (f) -- (x);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (a);
+          \end{tikzpicture}
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            \tikzstyle{focusedNode2} = [focusColorBis];
+            
+            \node (f) at (0,0) {$f$};
+            \node (s) at (-1,-1) {$s$};
+            \node (b) at (-1,-2) {$b$};
+            \node[focusedNode2] (y) at (1,-1) {$y$};
+
+            \draw[thick] (f) -- (y);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (b);
           \end{tikzpicture}
         \end{center}
         \onslide<7>
         \begin{center}
-          $\alpha(t) = \alpha(t') = f(s(b),s(a))$\\
-          $\alpha = (x/s(b), y/s(a))$\\
-          \begin{tikzpicture}[level distance = 1cm]
-            \node {$f$}
-            child { node {$s$}
-              child {node {$b$}}}
-            child { node {$s$}
-              child {node {$a$}}};
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            
+            \node (f) at (0,0) {$f$};
+            \node[focusedNode] (x) at (-1,-1) {$x$};
+            \node (s) at (1,-1) {$s$};
+            \node (a) at (1,-2) {$a$};
+
+            \draw[thick] (f) -- (x);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (a);
+          \end{tikzpicture}
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            \tikzstyle{focusedNode2} = [focusColorBis];
+            
+            \node (f) at (0,0) {$f$};
+            \node (s) at (-1,-1) {$s$};
+            \node (b) at (-1,-2) {$b$};
+            \node[focusedNode2] (y) at (1,-1) {$y$};
+
+            \draw[thick] (f) -- (y);
+            \draw[thick] (f) -- (s);
+            \draw[thick] (s) -- (b);
+          \end{tikzpicture}
+          $\alpha = (\color{focusColor}{x/s(b)}, \color{focusColorBis}{y/s(a)})$\\
+          \begin{tikzpicture}
+
+            \tikzstyle{focusedNode} = [focusColor];
+            \tikzstyle{focusedEdge} = [focusColor,thick];
+            \tikzstyle{focusedNode2} = [focusColorBis];
+            \tikzstyle{focusedEdge2} = [focusColorBis,thick];
+            
+            \node (f) at (0,0) {$f$};
+            \node[focusedNode2] (s) at (1,-1) {$s$};
+            \node[focusedNode2] (a) at (1,-2) {$a$};
+            \node[focusedNode] (sbis) at (-1,-1) {$s$};
+            \node[focusedNode] (b) at (-1,-2) {$b$};
+            
+
+            \draw[thick] (f) -- (x);
+            \draw[thick] (f) -- (s);
+            \draw[focusedEdge2][thick] (s) -- (a);
+            \draw[thick] (f) -- (sbis);
+            \draw[focusedEdge] (sbis) -- (b);
           \end{tikzpicture}
         \end{center}
       \end{overprint}
@@ -167,49 +275,99 @@
 \end{frame}
 
 \begin{frame}{Systèmes de réécriture}
-  \begin{itemize}
-  \item $r$ et $l$ des termes
-  \item $Var(r) \subseteq Var(l)$
-  \item $l \rightarrow r$ est une règle de réécriture
-  \end{itemize}
+  \begin{block}{Règle de réécriture}
+    \begin{itemize}[<+->]
+    \item $l$ et $r$ des termes
+    \item $r$ n'est pas une variable
+    \item $Var(r) \subseteq Var(l)$
+    \item $l \rightarrow r$ est une règle de réécriture
+    \end{itemize}
+  \end{block}
   \begin{center}
-    $s(x) \rightarrow s(s(x))$\\
-    $t = f(b,s(a))$\\
-    \onslide<2->
-    $\sigma(s(x)) = s(a)$ avec $\sigma = (x / a)$\\
-    \onslide<3->
-    $t \rightarrow t'$ \\
-    \onslide<5>
-    $t' = f(b,s(s(a)))$ \\
-    \onslide<1->
+    \onslide<5->
+    $\color<7>{focusColorBis}{s(x)}$ $\rightarrow$ $\color<8>{focusColorBis}{s(s(x))}$\\
+    \onslide<7->
+    $\color<9>{focusColor}{\sigma = (x / a)}$\\
+    \onslide<5->
     \begin{overprint}
-      \onslide<1-3>
+      \onslide<6>
       \begin{center}
-        \begin{tikzpicture}[level distance = 1cm]
-          \node {$f$}
-          child { node {$b$}}
-          child { node {$s$}
-            child {node {$a$}}};
+        \begin{tikzpicture}
+
+          \tikzstyle{focusedNode} = [focusColor];
+          
+          \node (f) at (0,0) {$f$};
+          \node (b) at (-1,-1) {$b$};
+          \node (s) at (1,-1) {$s$};
+          \node (a) at (1,-2) {$a$};
+
+          \draw[thick] (f) -- (b);
+          \draw[thick] (f) -- (s);
+          \draw[thick] (s) -- (a);
         \end{tikzpicture}
       \end{center}
-      \onslide<4>
+      \onslide<7>
       \begin{center}
-        \begin{tikzpicture}[level distance = 1cm]
-          \node {$f$}
-          child { node {$b$}}
-          child { node {$s$}
-            child { node {$s$}
-              child {node {$x$}}}};
+        \begin{tikzpicture}
+
+          \tikzstyle{focusedNode} = [focusColor];
+          \tikzstyle{focusedEdge} = [focusColor,thick];
+          \tikzstyle{focusedNode2} = [focusColorBis];
+          \tikzstyle{focusedEdge2} = [focusColorBis,thick];
+          
+          \node (f) at (0,0) {$f$};
+          \node (b) at (-1,-1) {$b$};
+          \node[focusedNode] (s) at (1,-1) {$s$};
+          \node[focusedNode] (a) at (1,-2) {$a$};
+          \node[focusedNode2] (rws) at (1.5,-1) {$s$};
+          \node[focusedNode2] (rwx) at (1.5,-2) {$x$};
+
+          \draw[thick] (f) -- (b);
+          \draw[thick] (f) -- (s);
+          \draw[focusedEdge] (s) -- (a);
+          \draw[focusedEdge2] (rws) -- (rwx);
         \end{tikzpicture}
       \end{center}
-      \onslide<5>
+      \onslide<8>
       \begin{center}
-        \begin{tikzpicture}[level distance = 1cm]
-          \node {$f$}
-          child { node {$b$}}
-          child { node {$s$}
-            child { node {$s$}
-              child {node {$a$}}}};
+        \begin{tikzpicture}
+
+          \tikzstyle{focusedNode} = [focusColor];
+          \tikzstyle{focusedEdge} = [focusColor,thick];
+          \tikzstyle{focusedNode2} = [focusColorBis];
+          \tikzstyle{focusedEdge2} = [focusColorBis,thick];
+          
+          \node (f) at (0,0) {$f$};
+          \node (b) at (-1,-1) {$b$};
+          \node[focusedNode2] (rws) at (1,-1) {$s$};
+          \node[focusedNode2] (rwss) at (1,-2) {$s$};
+          \node[focusedNode2] (rwx) at (1,-3) {$x$};
+
+          \draw[thick] (f) -- (b);
+          \draw[thick] (f) -- (rws);
+          \draw[focusedEdge2] (rws) -- (rwss);
+          \draw[focusedEdge2] (rwss) -- (rwx);
+        \end{tikzpicture}
+      \end{center}
+      \onslide<9>
+      \begin{center}
+        \begin{tikzpicture}
+
+          \tikzstyle{focusedNode} = [focusColor];
+          \tikzstyle{focusedEdge} = [focusColor,thick];
+          \tikzstyle{focusedNode2} = [focusColorBis];
+          \tikzstyle{focusedEdge2} = [focusColorBis,thick];
+          
+          \node (f) at (0,0) {$f$};
+          \node (b) at (-1,-1) {$b$};
+          \node (rws) at (1,-1) {$s$};
+          \node (rwss) at (1,-2) {$s$};
+          \node[focusedNode] (rwa) at (1,-3) {$a$};
+
+          \draw[thick] (f) -- (b);
+          \draw[thick] (f) -- (rws);
+          \draw[thick] (rws) -- (rwss);
+          \draw[thick] (rwss) -- (rwa);
         \end{tikzpicture}
       \end{center}
     \end{overprint}

@@ -44,7 +44,7 @@
   \begin{exampleblock}{Exemple}
     \begin{itemize}
     \onslide<9-> \item $P(f(g(x,y)),a) \leftarrow Q(x,y)$ : \csclause
-    \onslide<10-> \item $P(x) \leftarrow Q(x),Q_2(g(x))$ : Pas une \csclause
+    \onslide<10-> \item $P(x) \leftarrow Q(x),Q_2(g(x))$ : pas une \csclause
     \end{itemize}
   \end{exampleblock}
 \end{frame}
@@ -69,7 +69,7 @@
 
 \begin{frame}{\csprogramme}
   \begin{itemize}[<+->]
-  \item \csprogramme : Ensemble de \csclauses
+  \item \csprogramme : ensemble de \csclauses
   \item Opérateurs
   \end{itemize}
   \onslide<3->
@@ -77,7 +77,7 @@
     \begin{itemize}[<+->]
     \item $G \leadsto G'$ : (dérivation classique) \\
       $\exists H \leftarrow B \in Prog$ et $\exists \sigma$ \\
-      t.q. $A \in G$ avec $\sigma(A) = \sigma(H)$ (unification)\\
+      tel que $A \in G$ avec $\sigma(A) = \sigma(H)$ (unification)\\
       et $G' = \sigma(G)$ avec $\sigma(A)$ remplacé par $\sigma(B)$
     \item $G \rightarrow G'$ : (dérivation faible) \\
       comme ci-dessus mais avec $A = \sigma(H)$ (filtrage)
@@ -98,14 +98,21 @@
     \item \color<7>{focusColor}$Q(v(x), w(y)) \leftarrow Q(x, y)$ \\
     \item \color<8>{focusColor}$Q(a, a)$
     \end{enumerate}
-  \item $f(v(a),w(a)) \in \mathcal{L}_{Prog}(P)$ ?
-    \begin{itemize}
-    \item $P(f(v(a),w(a))) \leadsto Q(v(a), w(a))$ \\
-    \item $Q(v(a), w(a)) \leadsto Q(a, a)$ \\
-    \item $Q(a, a) \leadsto \emptyset$
-    \item Oui, $f(v(a),w(a)) \in \mathcal{L}_{Prog}(P)$
+  \end{itemize}
+  \onslide<5->
+  \begin{exampleblock}{}
+    \begin{itemize}[<+->]
+    \item $f(v(a),w(a)) \in \mathcal{L}_{Prog}(P)$ ?
+      \begin{itemize}
+      \item $P(f(v(a),w(a))) \leadsto Q(v(a), w(a))$ \\
+      \item $Q(v(a), w(a)) \leadsto Q(a, a)$ \\
+      \item $Q(a, a) \leadsto \emptyset$
+      \item Oui, $f(v(a),w(a)) \in \mathcal{L}_{Prog}(P)$
+      \end{itemize}
     \end{itemize}
-  \item $\mathcal{L}_{Prog}(P) = \{f(v^n(a),w^n(a)) | n \in \mathbb{N}\}$
+  \end{exampleblock}
+  \begin{itemize}
+  \item<10> $\mathcal{L}_{Prog}(P) = \{f(v^n(a),w^n(a)) | n \in \mathbb{N}\}$
   \end{itemize}
 \end{frame}
 
@@ -133,7 +140,7 @@
       \end{tikzpicture}
     }\\
   \end{center}
-  \begin{columns}
+  \begin{columns}[t]
     \begin{column}{0.5\textwidth}
       \begin{itemize}[<+->]
       \item Un \csprogramme initial
@@ -192,10 +199,12 @@
 \end{frame}
 
 \begin{frame}{Exemple}
-  \begin{itemize}[<+->]
-  \item $R$ : $\{{\color<3>{focusColorBis}g(h(y))} \rightarrow {\color<7>{focusColorBis}f(y)} \}$
-  \item $Prog$ : $\{{\color<4>{focusColor}{\color<3>{focusColor}P(g(x))} \leftarrow Q(x)}.~~{\color<5>{focusColor}Q(h(x)) \leftarrow Q'(x)}.~~Q'(a). \}$
-  \end{itemize}
+  \begin{exampleblock}{}
+    \begin{itemize}[<+->]
+    \item $R$ : $\{{\color<3>{focusColorBis}g(h(y))} \rightarrow {\color<7>{focusColorBis}f(y)} \}$
+    \item $Prog$ : $\{{\color<4>{focusColor}{\color<3>{focusColor}P(g(x))} \leftarrow Q(x)}.~~{\color<5>{focusColor}Q(h(x)) \leftarrow Q'(x)}.~~Q'(a). \}$
+    \end{itemize}
+  \end{exampleblock}
   \begin{overprint}
     \onslide<3>
     $P({\color<3>{focusColorBis}g(h(y))})$
@@ -230,7 +239,7 @@
   \item<3-> 2 paires critiques : \onslide<3->{$P(f(x,x)) \leftarrow Q(x)$} \onslide<4->{et $Q(b)$}
   \item<5-> $Q(b)$ est convergente
   \item<6-> On ajoute $P(f(x,x)) \leftarrow Q(x)$ à $Prog$
-  \item<7-> Toutes les pairs critiques sont convergentes \\~
+  \item<7-> Toutes les paires critiques sont convergentes \\~
 
   \item<8-> $f(a, a) \in \mathcal{L}_{Prog}(P)$
   \item<9-> $f(a, a) \rightarrow_R f(b, a)$

@@ -2,7 +2,7 @@
   \begin{block}{}
     \begin{itemize}[<+->]
     \item Restriction des réécritures
-    \item Réécritures de sous-termes non réductibles
+    \item Réécritures de sous-termes non réducibles
     \end{itemize}
   \end{block}
   \onslide<2>
@@ -60,7 +60,7 @@
     \begin{itemize}
     \item \onslide<3-> $f(b) \rightarrow b$
     \item \onslide<4-> $t = f(x)$ : \onslide<5-> irréducible
-    \item \onslide<6-> $\theta = (x/a)$ : \onslide<7-> est fortement irréducible
+    \item \onslide<6-> $\theta = (x/a)$ : \onslide<7-> fortement irréducible
     \item \onslide<8-> $\theta(t) = f(a)$ : \onslide<9-> fortement irréducible
     \end{itemize}
   \end{exampleblock}
@@ -71,17 +71,15 @@
     Soit $A$ un atome ($A$ peut contenir des variables).\\
     \begin{itemize}[<+->]
     \item L'étape $A \leadsto_{[H\leftarrow B,\sigma]} G$ est \nc (resp.\ \snc) si \\
-      pour toute variables $x \in Var(H)$ non linéaires,\\
+      pour toute variable $x \in Var(H)$ non linéaire,\\
       $x$ est irréducible (resp.\ fortement irréducible) par $R$.\\
     \item Une dérivation est \nc (resp.\ \snc) si toutes ses étapes le sont.
     \end{itemize}
   \end{block}
-  \begin{itemize}[<+->]
-  \item Une clause non copiante est \snc
-  \end{itemize}
+  \onslide<3-> Une clause non copiante est \snc
   \onslide<4->
   \begin{exampleblock}{Exemple}
-    \begin{itemize}[<+->]
+    \begin{itemize}[<+(1)->]
     \item $P(g(x,x)) \leftarrow Q(x)$
     \item $R = \{h(a) \rightarrow b\}$
     \item $P(g(h(y),h(y)))$ \onslide<7->$\leadsto Q(h(y))$ : \onslide<8->\nc mais pas \snc

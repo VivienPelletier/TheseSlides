@@ -1,15 +1,18 @@
 \begin{frame}{Stratégie innermost}
-  \begin{itemize}
-  \item Restriction des réécritures
-  \item Réécritures de sous-termes non réductibles
-  \end{itemize}
+  \begin{block}{}
+    \begin{itemize}[<+->]
+    \item Restriction des réécritures
+    \item Réécritures de sous-termes non réductibles
+    \end{itemize}
+  \end{block}
+  \onslide<2>
   \begin{center}
     \begin{tikzpicture}
       
-      \tikzstyle{focusedNode} = [shape = circle, thick, focusColor, fill=focusColor, draw];
+      \tikzstyle{focusedNode} = [shape = circle, thick, black, fill=focusColorBis, draw];
       \tikzstyle{normalEdge} = [thick];
       
-      \draw[thick, focusColorBis, fill=focusColorBis] (1,-3) -- ( 0,-5) -- (2,-5) -- cycle;
+      \draw[thick, black, pattern=north east lines, pattern color=focusColor] (1,-3) -- ( 0,-5) -- (2,-5) -- cycle;
       
       \node (root) at (0,0) {};
       
@@ -43,7 +46,7 @@
 \end{frame}
 
 \begin{frame}{Irréducibilité forte}
-  \begin{Definition}[Irréducibilité forte]
+  \begin{block}{Irréducibilité forte}
     Pour tout $l \rightarrow r \in R$.\\
     \begin{itemize}[<+->]
     \item Un terme $t$ est {\em fortement irréducible} (par $R$) si\\
@@ -51,17 +54,20 @@
     \item Une substitution $\theta$ est {\em fortement irréducible} si\\
       pour tout $x \in \mathcal{X}$, $\theta(x)$ est fortement irréducible.
     \end{itemize}
-  \end{Definition}
-  \begin{itemize}
-  \item \onslide<3-> $f(b) \rightarrow b$
-  \item \onslide<4-> $t = f(x)$ : \onslide<5-> irréducible
-  \item \onslide<6-> $\theta = (x/a)$ : \onslide<7-> est fortement irréducible
-  \item \onslide<8-> $\theta(t) = f(a)$ : \onslide<9-> fortement irréducible
-  \end{itemize}
+  \end{block}
+  \onslide<3->
+  \begin{exampleblock}{Exemple}
+    \begin{itemize}
+    \item \onslide<3-> $f(b) \rightarrow b$
+    \item \onslide<4-> $t = f(x)$ : \onslide<5-> irréducible
+    \item \onslide<6-> $\theta = (x/a)$ : \onslide<7-> est fortement irréducible
+    \item \onslide<8-> $\theta(t) = f(a)$ : \onslide<9-> fortement irréducible
+    \end{itemize}
+  \end{exampleblock}
 \end{frame}
 
 \begin{frame}{{\large Dérivations non copiantes (\nc) et fortement non copiantes (\snc)}}
-  \begin{Definition}
+  \begin{block}{\nc et \snc}
     Soit $A$ un atome ($A$ peut contenir des variables).\\
     \begin{itemize}[<+->]
     \item L'étape $A \leadsto_{[H\leftarrow B,\sigma]} G$ est \nc (resp.\ \snc) si \\
@@ -69,7 +75,7 @@
       $x$ est irréducible (resp.\ fortement irréducible) par $R$.\\
     \item Une dérivation est \nc (resp.\ \snc) si toutes ses étapes le sont.
     \end{itemize}
-  \end{Definition}
+  \end{block}
   \begin{itemize}[<+->]
   \item Une clause non copiante est \snc
   \end{itemize}

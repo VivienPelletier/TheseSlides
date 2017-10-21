@@ -71,15 +71,18 @@
   \begin{itemize}[<+->]
   \item \csprogramme : Ensemble de \csclauses
   \item Opérateurs
-    \begin{itemize}
+  \end{itemize}
+  \onslide<3->
+  \begin{block}{}
+    \begin{itemize}[<+->]
     \item $G \leadsto G'$ : (dérivation classique) \\
       $\exists H \leftarrow B \in Prog$ et $\exists \sigma$ \\
       t.q. $A \in G$ avec $\sigma(A) = \sigma(H)$ (unification)\\
       et $G' = \sigma(G)$ avec $\sigma(A)$ remplacé par $\sigma(B)$
     \item $G \rightarrow G'$ : (dérivation faible) \\
-      Comme ci-dessus mais avec $A = \sigma(H)$ (filtrage)
+      comme ci-dessus mais avec $A = \sigma(H)$ (filtrage)
     \end{itemize}
-  \end{itemize}
+  \end{block}
   \onslide<5>
   \begin{block}{Langage d'un \csprogramme}
     Soit $\vec{t}$ des termes clos.
@@ -152,13 +155,25 @@
 \end{frame}
 
 \begin{frame}{Paires critiques}
-  \begin{itemize}[<+->]
-  \item ${\color<3>{focusColor}l} \rightarrow r \in R$
-  \item $P(..., {\color<3>{focusColor}t_i}, ...) \leftarrow B \in Prog$
-  \end{itemize}
+  \vspace{-\baselineskip}
+  \begin{columns}
+    \begin{column}{0.25\textwidth}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{}
+        \begin{itemize}[<+->]
+        \item ${\color<3>{focusColorBis}l} \rightarrow {\color<5>{focusColorBis}r} \in R$
+        \item $P(..., {\color<3>{focusColor}t_i}, ...) \leftarrow B \in Prog$
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.25\textwidth}
+    \end{column}
+  \end{columns}
+  \vspace{\baselineskip}
   \begin{overprint}
     \onslide<3>
-    $P(..., l, ...)$
+    $P(..., {\color<3>{focusColorBis}l}, ...)$
     \onslide<4>
     $P(..., l, ...) $ \hfill $ \xrsquigarrow{~~~~~~~~~~~~~~~~~~~~~~~~~}^+_{[\sigma]} $ \hfill $ G$ avec $G$ plat \\
     \onslide<5>
@@ -173,17 +188,17 @@
     \end{center}
   \end{overprint}
   \onslide<5->
-  $\sigma(P(..., r, ...)) \leftarrow G$ : paire critique
+  $\sigma(P(..., {\color<5>{focusColorBis}r}, ...)) \leftarrow G$ : paire critique
 \end{frame}
 
 \begin{frame}{Exemple}
   \begin{itemize}[<+->]
-  \item $R$ : $\{{\color<3>{focusColor}g(h(y))} \rightarrow f(y) \}$
+  \item $R$ : $\{{\color<3>{focusColorBis}g(h(y))} \rightarrow {\color<7>{focusColorBis}f(y)} \}$
   \item $Prog$ : $\{{\color<4>{focusColor}{\color<3>{focusColor}P(g(x))} \leftarrow Q(x)}.~~{\color<5>{focusColor}Q(h(x)) \leftarrow Q'(x)}.~~Q'(a). \}$
   \end{itemize}
   \begin{overprint}
     \onslide<3>
-    $P(g(h(y)))$
+    $P({\color<3>{focusColorBis}g(h(y))})$
     \onslide<4>
     $P(g(h(y))) \xrsquigarrow{~~~~~~~~~~~~~~~~~~~~~~~~~} Q(h(y)) $
     \onslide<5>
@@ -202,24 +217,24 @@
     \end{center}
   \end{overprint}
   \onslide<7->
-  $\sigma(P(f(y))) \leftarrow Q'(y)$ : paire critique
+  $\sigma(P({\color<7>{focusColorBis}f(y)})) \leftarrow Q'(y)$ : paire critique
 \end{frame}
 
 \begin{frame}{Le problème}
-  \begin{itemize}[<+->]
-  \item $Prog = \{ P(g(x)) \leftarrow Q(x).~~
-    Q(a).~~
-    Q(b).\}$
-  \item $R = \{g(x) \rightarrow f(x,x);~~ a \rightarrow b\}$ \\~
+  \begin{itemize}
+  \item $Prog = \{ {\color<3>{focusColor}P(g(x)) \leftarrow Q(x).}~~
+    {\color<4>{focusColor}Q(a).}~~
+    {\color<5>{focusColor}Q(b).}\}$
+  \item<2-> $R = \{{\color<3>{focusColorBis}g(x) \rightarrow f(x,x)},~~ {\color<4,9>{focusColorBis}a \rightarrow b}\}$ \\~
 
-  \item 2 paires critiques : $P(f(x,x)) \leftarrow Q(x)$ et $Q(b)$
-  \item $Q(b)$ est convergente
-  \item On ajoute $P(f(x,x)) \leftarrow Q(x)$ à $Prog$
-  \item Toutes les pairs critiques sont convergentes \\~
+  \item<3-> 2 paires critiques : \onslide<3->{$P(f(x,x)) \leftarrow Q(x)$} \onslide<4->{et $Q(b)$}
+  \item<5-> $Q(b)$ est convergente
+  \item<6-> On ajoute $P(f(x,x)) \leftarrow Q(x)$ à $Prog$
+  \item<7-> Toutes les pairs critiques sont convergentes \\~
 
-  \item $f(a, a) \in \mathcal{L}_{Prog}(P)$
-  \item $f(a, a) \rightarrow_R f(b, a)$
-  \item mais $f(b, a)$ et $f(a,b) \notin \mathcal{L}_{Prog}(P)$
+  \item<8-> $f(a, a) \in \mathcal{L}_{Prog}(P)$
+  \item<9-> $f(a, a) \rightarrow_R f(b, a)$
+  \item<10-> mais $f(b, a)$ et $f(a,b) \notin \mathcal{L}_{Prog}(P)$
   
   \end{itemize}
 \end{frame}

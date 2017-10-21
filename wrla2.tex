@@ -19,11 +19,11 @@
 \begin{frame}{Exemple}
   \begin{itemize}[<+->]
   \item $Prog$ =
-    \begin{itemize}
-    \item $P(f(x,x)) \stackrel{1}{\leftarrow} Q(x)$
-    \item \color<7>{focusColor}$Q(s(x)) \stackrel{2}{\leftarrow} Q(x)$
-    \item \color<8>{focusColor}$Q(a) \stackrel{3}{\leftarrow} $
-    \end{itemize}
+    \begin{enumerate}
+    \item $P(f(x,x)) \leftarrow Q(x)$
+    \item \color<7>{focusColor}$Q(s(x)) \leftarrow Q(x)$
+    \item \color<8>{focusColor}$Q(a) $
+    \end{enumerate}
     \vspace{\baselineskip}
 
   \item $uncopying(P(f(x,x)) \leftarrow Q(x))$
@@ -31,7 +31,7 @@
   \item $Q^2(s(x),s(y)) \leftarrow Q^2(x,y)$
   \item $Q^2(a,a) \leftarrow $ \\~
 
-  \item Reconnaît le même langage
+  \item $\mathcal{L}_{Prog}(Q^2) = \{t \cdot t' \mid t,t' \in \mathcal{L}_{Prog}(Q) \wedge t = t'\}$
   \item Plus de clauses copiantes
   \end{itemize}
     
@@ -41,10 +41,10 @@
   \begin{itemize}[<+->]
   \item Ne termine pas dans le cas général
   \item $Prog$ =
-    \begin{itemize}
-    \item \color<7>{focusColor}$P(c(x,x)) \stackrel{1}{\leftarrow} P(x)$
-    \item \color<8>{focusColor}$P(a) \stackrel{2}{\leftarrow} $
-    \end{itemize}
+    \begin{enumerate}
+    \item \color<7>{focusColor}$P(c(x,x)) \leftarrow P(x)$
+    \item \color<8>{focusColor}$P(a)$
+    \end{enumerate}
     \vspace{\baselineskip}
 
   \item $uncopying(P(c(x,x)) \leftarrow P(x))$
@@ -68,6 +68,6 @@
 
   \item $P^2(c(x,x'), c(y,y')) \leftarrow P^2(x, x'), P(y), P(y')$ \\~
 
-  \item $\{ \vec{t}. \vec{t}. \vec{t'}. \vec{t''} \mid \vec{t},\vec{t'},\vec{t''} \in L(P) \} \supset L(P^4)$
+  \item $\{ t \cdot t \cdot t' \cdot t'' \mid t, t', t'' \in L(P) \} \supset L(P^4)$
   \end{itemize}
 \end{frame}

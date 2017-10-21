@@ -27,19 +27,44 @@
 \begin{frame}{\csclause}
   \begin{itemize}[<+->]
   \item Prédicats avec un nombre fixe d'arguments
-  \item Propriétés des conjonctions d'atomes $B = A_1, ..., A_n$
+  \item Atome : prédicat avec des termes en argument
+  \item Conjonctions d'atomes : $B = A_1, ..., A_n$
+  \item Propriétés
     \begin{itemize}
     \item plat : $\forall A_i \in B, \forall t_j \in P(t_1, ..., t_n) = A_i, t_j$ est une variable
     \item linéaire : chaque variable dans $B$ n'apparaît qu'une seule fois
     \item $\emptyset$ : conjonction d'atomes vide : plat et linéaire
     \end{itemize}
-    \vspace{\baselineskip}
-  \item \csclause : $H \leftarrow B$ avec $B$ plat et linéaire \\~
-
-  \item $P(f(g(x,y)),a) \leftarrow Q(x,y)$ : \csclause
-  \item $P(x) \leftarrow Q(x),Q_2(g(x))$ : Pas une \csclause
   \end{itemize}
-  
+  \onslide<8->
+  \begin{block}{\csclause}
+    $H \leftarrow B$ avec $B$ plat et linéaire
+  \end{block}
+  \onslide<9->
+  \begin{exampleblock}{Exemple}
+    \begin{itemize}
+    \onslide<9-> \item $P(f(g(x,y)),a) \leftarrow Q(x,y)$ : \csclause
+    \onslide<10-> \item $P(x) \leftarrow Q(x),Q_2(g(x))$ : Pas une \csclause
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{\csclause}
+  \begin{block}{Propriétés des \csclauses}
+    Une clause $H \leftarrow B$ est
+    \pause
+    \begin{itemize}[<+->]
+    \item copiante si $H$ n'est pas linéaire
+    \item normalisée si tous les arguments sont au plus de profondeur 1
+    \end{itemize}
+  \end{block}
+  \onslide<4->
+  \begin{exampleblock}{Exemple}
+    \begin{itemize}
+    \onslide<4-> \item $P(f(g(x,a)),x) \leftarrow Q(x)$ : copiante et non normalisée
+    \onslide<5-> \item $P(f(x,y),a) \leftarrow Q'(x,y)$ : non copiante et normalisée
+    \end{itemize}
+  \end{exampleblock}
 \end{frame}
 
 \begin{frame}{\csprogramme}
@@ -65,11 +90,11 @@
 \begin{frame}{Exemple}
   \begin{itemize}[<+->]
   \item $Prog$ =
-    \begin{itemize}
-    \item \color<6>{focusColor}$P(f(x,y)) \stackrel{1}{\leftarrow} Q(x, y)$ \\
-    \item \color<7>{focusColor}$Q(v(x), w(y)) \stackrel{2}{\leftarrow} Q(x, y)$ \\
-    \item \color<8>{focusColor}$Q(a, a) \stackrel{3}{\leftarrow} $
-    \end{itemize}
+    \begin{enumerate}
+    \item \color<6>{focusColor}$P(f(x,y)) \leftarrow Q(x, y)$ \\
+    \item \color<7>{focusColor}$Q(v(x), w(y)) \leftarrow Q(x, y)$ \\
+    \item \color<8>{focusColor}$Q(a, a)$
+    \end{enumerate}
   \item $f(v(a),w(a)) \in \mathcal{L}_{Prog}(P)$ ?
     \begin{itemize}
     \item $P(f(v(a),w(a))) \leadsto Q(v(a), w(a))$ \\
@@ -154,7 +179,7 @@
 \begin{frame}{Exemple}
   \begin{itemize}[<+->]
   \item $R$ : $\{{\color<3>{focusColor}g(h(y))} \rightarrow f(y) \}$
-  \item $Prog$ : $\{{\color<4>{focusColor}{\color<3>{focusColor}P(g(x))} \leftarrow Q(x)}; {\color<5>{focusColor}Q(h(x)) \leftarrow Q'(x)}; Q'(a) \leftarrow \}$
+  \item $Prog$ : $\{{\color<4>{focusColor}{\color<3>{focusColor}P(g(x))} \leftarrow Q(x)}.~~{\color<5>{focusColor}Q(h(x)) \leftarrow Q'(x)}.~~Q'(a). \}$
   \end{itemize}
   \begin{overprint}
     \onslide<3>
@@ -182,12 +207,12 @@
 
 \begin{frame}{Le problème}
   \begin{itemize}[<+->]
-  \item $Prog = \{ P(f(x,x)) \leftarrow Q(x).\,
-    Q(a) \leftarrow .\,
-    Q(b) \leftarrow .\}$
+  \item $Prog = \{ P(f(x,x)) \leftarrow Q(x).~~
+    Q(a).~~
+    Q(b).\}$
   \item $R = \{a \rightarrow b\}$ \\~
 
-  \item Une paire critique : $Q(b) \leftarrow$
+  \item Une paire critique : $Q(b)$
   \item Elle est convergente \\~
 
   \item $f(a, a) \in \mathcal{L}_{Prog}(P)$

@@ -31,7 +31,7 @@
   \item Conjonctions d'atomes : $B = A_1, ..., A_n$
   \item Propriétés
     \begin{itemize}
-    \item plat : $\forall A_i \in B, \forall t_j \in P(t_1, ..., t_n) = A_i, t_j$ est une variable
+    \item plat : tous les arguments des atomes de $B$ sont des variables
     \item linéaire : chaque variable dans $B$ n'apparaît qu'une seule fois
     \item $\emptyset$ : conjonction d'atomes vide : plat et linéaire
     \end{itemize}
@@ -207,13 +207,15 @@
 
 \begin{frame}{Le problème}
   \begin{itemize}[<+->]
-  \item $Prog = \{ P(f(x,x)) \leftarrow Q(x).~~
+  \item $Prog = \{ P(g(x)) \leftarrow Q(x).~~
     Q(a).~~
     Q(b).\}$
-  \item $R = \{a \rightarrow b\}$ \\~
+  \item $R = \{g(x) \rightarrow f(x,x);~~ a \rightarrow b\}$ \\~
 
-  \item Une paire critique : $Q(b)$
-  \item Elle est convergente \\~
+  \item 2 paires critiques : $P(f(x,x)) \leftarrow Q(x)$ et $Q(b)$
+  \item $Q(b)$ est convergente
+  \item On ajoute $P(f(x,x)) \leftarrow Q(x)$ à $Prog$
+  \item Toutes les pairs critiques sont convergentes \\~
 
   \item $f(a, a) \in \mathcal{L}_{Prog}(P)$
   \item $f(a, a) \rightarrow_R f(b, a)$

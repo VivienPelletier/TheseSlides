@@ -44,36 +44,43 @@
 
 \begin{frame}{Irréducibilité forte}
   \begin{Definition}[Irréducibilité forte]
-    Soit $R$ un TRS.
-    Un terme $t$ est {\em fortement irréducible} (par $R$) si
-    pour tout $p \in \textit{PosNonVar}(t)$, pour tout $l \rightarrow r \in R$,
-    $t|_p$ et $l$ ne sont pas unifiables.\\
-    Une substitution $\theta$ est {\em fortement irréducible} si
-    pour tout $x \in \mathcal{X}$, $\theta(x)$ est fortement irréducible.
+    Pour tout $l \rightarrow r \in R$.\\
+    \begin{itemize}[<+->]
+    \item Un terme $t$ est {\em fortement irréducible} (par $R$) si\\
+      aucun de ses sous-termes ne peut s'unifier avec $l$.\\
+    \item Une substitution $\theta$ est {\em fortement irréducible} si\\
+      pour tout $x \in \mathcal{X}$, $\theta(x)$ est fortement irréducible.
+    \end{itemize}
   \end{Definition}
   \begin{itemize}
-  \item \onslide<2-> $f(b) \rightarrow b$
-  \item \onslide <3-> $t = f(x)$ : \onslide<4-> irréducible
-  \item \onslide <5-> $\theta = (x/a)$ : \onslide <6-> est fortement irréducible
-  \item \onslide <7-> $\theta(t) = f(a)$ : \onslide <8-> fortement irréducible
+  \item \onslide<3-> $f(b) \rightarrow b$
+  \item \onslide<4-> $t = f(x)$ : \onslide<5-> irréducible
+  \item \onslide<6-> $\theta = (x/a)$ : \onslide<7-> est fortement irréducible
+  \item \onslide<8-> $\theta(t) = f(a)$ : \onslide<9-> fortement irréducible
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Dérivations non copiantes (\nc) et fortement non copiantes (\snc)}
+\begin{frame}{{\large Dérivations non copiantes (\nc) et fortement non copiantes (\snc)}}
   \begin{Definition}
     Soit $A$ un atome ($A$ peut contenir des variables).\\
-    L'étape $A \leadsto_{[H\leftarrow B,\sigma]} G$ est \nc (resp.\ \snc) si
-    pour tout $x \in Var^{mult}(H)$, $\sigma(x)$ est irréducible (resp.\ fortement irréducible) par $R$.\\
-    Une dérivation est \nc (resp.\ \snc) si toutes ses étapes le sont.
+    \begin{itemize}[<+->]
+    \item L'étape $A \leadsto_{[H\leftarrow B,\sigma]} G$ est \nc (resp.\ \snc) si \\
+      pour toute variables $x \in Var(H)$ non linéaires,\\
+      $x$ est irréducible (resp.\ fortement irréducible) par $R$.\\
+    \item Une dérivation est \nc (resp.\ \snc) si toutes ses étapes le sont.
+    \end{itemize}
   \end{Definition}
   \begin{itemize}[<+->]
-  \item Une clause non copiante est \snc \\~
-    
-  \item $P(g(x,x)) \leftarrow Q(x)$
-  \item $R = \{h(a) \rightarrow b\}$ \\~
-
-  \item $P(g(h(y),h(y))) \leadsto Q(h(y))$ : \nc mais pas \snc
+  \item Une clause non copiante est \snc
   \end{itemize}
+  \onslide<4->
+  \begin{exampleblock}{Exemple}
+    \begin{itemize}[<+->]
+    \item $P(g(x,x)) \leftarrow Q(x)$
+    \item $R = \{h(a) \rightarrow b\}$
+    \item $P(g(h(y),h(y)))$ \onslide<7->$\leadsto Q(h(y))$ : \onslide<8->\nc mais pas \snc
+    \end{itemize}
+  \end{exampleblock}
 \end{frame}
 
 \begin{frame}{Clôture par réécriture innermost}

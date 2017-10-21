@@ -189,16 +189,57 @@
 \end{frame}
 
 \begin{frame}{Transformation de \pctrs}
-  \begin{itemize}
-  \item $R' = R'_1 \cup R'_2 \cup R'_3 \cup R'_4$
-  \item $R'_1 = \{top(j(x)) \rightarrow top(q_I(x)) \mid q_I \in Q_I\}$
-  \item $R'_2= \{q(f(x_1,\ldots,x_n))\rightarrow \delta(x_1,\ldots,q'(x_i),\ldots,x_n) \mid \delta=(q, \langle f,i \rangle, q') \in \Delta\}$
-  \item $R'_3= \{q_f(l_k) \rightarrow j(r_k) \mid q_f \in Q_f^k,\, (L_k : l_k \rightarrow r_k) \in R\}$
-  \item $R'_4= \{\delta(x_1,\ldots,j(x_i),\ldots,x_n)\rightarrow j(f(x_1,\ldots,x_i,\ldots,x_n)) \mid \delta=(q, \langle f,i \rangle, q') \in \Delta\}$
-  \end{itemize}
+  \begin{overprint}
+    \onslide<1>
+    \begin{itemize}
+    \item $R' = R'_1 \cup R'_2 \cup R'_3 \cup R'_4$
+    \item $R'_1$ : Règles d'amorçage
+    \item $R'_2$ : Règles de parcourt de l'automate
+    \item $R'_3$ : Règles de réécriture du \pctrs
+    \item $R'_4$ : Règles de remonté du jeton
+    \end{itemize}
+    \onslide<2>
+    \begin{itemize}
+    \item $R' = R'_1 \cup R'_2 \cup R'_3 \cup R'_4$
+    \item $R'_1 = \{top(j(x)) \rightarrow top(q_I(x)) \mid q_I \in Q_I\}$
+    \item $R'_2$ : Règles de parcourt de l'automate
+    \item $R'_3$ : Règles de réécriture du \pctrs
+    \item $R'_4$ : Règles de remonté du jeton
+    \end{itemize}
+    \onslide<3>
+    \begin{itemize}
+    \item $R' = R'_1 \cup R'_2 \cup R'_3 \cup R'_4$
+    \item $R'_1 = \{top(j(x)) \rightarrow top(q_I(x)) \mid q_I \in Q_I\}$
+    \item $R'_2 = \{q(f(x_1,\ldots,x_n))\rightarrow \delta(x_1,\ldots,q'(x_i),\ldots,x_n) \mid$\\
+      ~~~~~~~~~~~$\delta=(q, \langle f,i \rangle, q') \in \Delta\}$
+    \item $R'_3$ : Règles de réécriture du \pctrs
+    \item $R'_4$ : Règles de remonté du jeton
+    \end{itemize}
+    \onslide<4>
+    \begin{itemize}
+    \item $R' = R'_1 \cup R'_2 \cup R'_3 \cup R'_4$
+    \item $R'_1 = \{top(j(x)) \rightarrow top(q_I(x)) \mid q_I \in Q_I\}$
+    \item $R'_2 = \{q(f(x_1,\ldots,x_n))\rightarrow \delta(x_1,\ldots,q'(x_i),\ldots,x_n) \mid$\\
+      ~~~~~~~~~~~$\delta=(q, \langle f,i \rangle, q') \in \Delta\}$
+    \item $R'_3 = \{q_f(l_k) \rightarrow j(r_k) \mid q_f \in Q_f^k,\, (L_k : l_k \rightarrow r_k) \in R\}$
+    \item $R'_4$ : Règles de remonté du jeton
+    \end{itemize}
+    \onslide<5->
+    \begin{itemize}
+    \item $R' = R'_1 \cup R'_2 \cup R'_3 \cup R'_4$
+    \item $R'_1 = \{top(j(x)) \rightarrow top(q_I(x)) \mid q_I \in Q_I\}$
+    \item $R'_2 = \{q(f(x_1,\ldots,x_n))\rightarrow \delta(x_1,\ldots,q'(x_i),\ldots,x_n) \mid$\\
+      ~~~~~~~~~~~$\delta=(q, \langle f,i \rangle, q') \in \Delta\}$
+    \item $R'_3 = \{q_f(l_k) \rightarrow j(r_k) \mid q_f \in Q_f^k,\, (L_k : l_k \rightarrow r_k) \in R\}$
+    \item $R'_4 = \{\delta(x_1,\ldots,j(x_i),\ldots,x_n)\rightarrow j(f(x_1,\ldots,x_i,\ldots,x_n)) \mid$\\
+      ~~~~~~~~~~~$\delta=(q, \langle f,i \rangle, q') \in \Delta\}$
+    \end{itemize}
+  \end{overprint}
+  \onslide<6->
   \begin{alertblock}{Théorème : {\small[SCSS, 2017, N. Andrianarivelo, V. Pelletier et P. Réty]}}
     Soit $t \in T(\Sigma)$. On a $t \rightarrow^*_{R_{pc}} t'$ si et seulement si $top(j(t)) \rightarrow^*_{R'} top(j(t'))$.
   \end{alertblock}
+  \onslide<7->
   \begin{alertblock}{Théorème : {\small[SCSS, 2017, N. Andrianarivelo, V. Pelletier et P. Réty]}}
     Le \pctrs $R$ est terminant sur $\Sigma$ si et seulement si $R'$ est terminant sur $\Sigma'$.
   \end{alertblock}
@@ -219,8 +260,8 @@
         \node[state] (q2) [right=of q] {$q'$};
       
         \path[->] 
-        (q)   edge  [bend left]  node        {$(q,\langle f,1 \rangle, q')$} (q2)
-        (q2)  edge  [bend left]  node        {$(q',\langle g,2 \rangle, q)$} (q);
+        (q)   edge  [bend left]  node        {$\delta1 = (q,\langle f,1 \rangle, q')$} (q2)
+        (q2)  edge  [bend left]  node        {$\delta2 = (q',\langle g,2 \rangle, q)$} (q);
       \end{tikzpicture}
       \vspace{\baselineskip}
     \end{column}

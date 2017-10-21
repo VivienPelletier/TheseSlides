@@ -146,6 +146,7 @@
   \item $Dir(\Sigma) = \{\langle f, i \rangle \mid f \in \Sigma, 1 \leq i \leq arity(f)\}$
   \item $L$ automate de mots construit sur $Dir(\Sigma)$
   \end{itemize}
+  \pause
   \begin{exampleblock}{Exemple}
     \begin{columns}
       \begin{column}{0.5\textwidth}
@@ -158,29 +159,62 @@
       \end{column}
       \begin{column}{0.5\textwidth}
         \begin{overprint}
-          \onslide<1>
-          \begin{tikzpicture}[level distance = 1cm]
-            \node {$f$}
-            child { node {$g$}
-              child {node {$a$}}
-              child {node {$a$}}}
-            child {node {$a$}};
+          \onslide<2-3>
+          \begin{tikzpicture}
+
+            \tikzstyle{normalNode} = [black];
+            \tikzstyle{focusNode} = [focusColor];
+            \tikzstyle{focusNodeBis} = [focusColorBis];
+            
+            \tikzstyle{normalEdge} = [thick];
+            \tikzstyle{focusEdge} = [thick, focusColorBis];
+
+            \newcommand*\pathNodeStyle{normalNode};
+            \newcommand*\targetNodeStyle{normalNode};
+
+            \newcommand*\pathEdgeStyle{normalEdge};
+
+            \only<3>{\renewcommand*\pathNodeStyle{focusNodeBis}}
+            \only<3>{\renewcommand*\targetNodeStyle{focusNode}}
+
+            \only<3>{\renewcommand*\pathEdgeStyle{focusEdge}}
+            
+            \node[\pathNodeStyle] (f) at (0,0) {$f$};
+            \node[\pathNodeStyle] (g) at (-1,-1) {$g$};
+            \node[normalNode] (a) at (-2,-2) {$a$};
+            \node[\targetNodeStyle] (arw) at (0,-2) {$a$};
+            \node[normalNode] (aa) at (1,-1) {$a$};
+
+            \draw[\pathEdgeStyle] (f) -- (g);
+            \draw[normalEdge] (f) -- (aa);
+            \draw[normalEdge] (g) -- (a);
+            \draw[\pathEdgeStyle] (g) -- (arw);
           \end{tikzpicture}
-          \onslide<2>
-          \begin{tikzpicture}[level distance = 1cm]
-            \node {$f$}
-            child {[focusColor] node[black] {$g$}
-              child {[black] node {$a$}}
-              child {[focusColor] node {$a$}}}
-            child {node {$a$}};
-          \end{tikzpicture}
-          \onslide<3>
-          \begin{tikzpicture}[level distance = 1cm]
-            \node {$f$}
-            child {[focusColor] node[black] {$g$}
-              child {[black] node {$a$}}
-              child {[focusColor] node {$b$}}}
-            child {node {$a$}};
+          \onslide<4->
+          \begin{tikzpicture}
+
+            \tikzstyle{normalNode} = [black];
+            \tikzstyle{focusNode} = [focusColor];
+            \tikzstyle{focusNodeBis} = [focusColorBis];
+            
+            \tikzstyle{normalEdge} = [thick];
+            \tikzstyle{focusEdge} = [thick, focusColorBis];
+
+            \newcommand*\pathNodeStyle{focusNodeBis}
+            \newcommand*\targetNodeStyle{focusNode}
+
+            \newcommand*\pathEdgeStyle{focusEdge}
+            
+            \node[\pathNodeStyle] (f) at (0,0) {$f$};
+            \node[\pathNodeStyle] (g) at (-1,-1) {$g$};
+            \node[normalNode] (a) at (-2,-2) {$a$};
+            \node[\targetNodeStyle] (arw) at (0,-2) {$b$};
+            \node[normalNode] (aa) at (1,-1) {$a$};
+
+            \draw[\pathEdgeStyle] (f) -- (g);
+            \draw[normalEdge] (f) -- (aa);
+            \draw[normalEdge] (g) -- (a);
+            \draw[\pathEdgeStyle] (g) -- (arw);
           \end{tikzpicture}
         \end{overprint}
       \end{column}
